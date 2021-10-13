@@ -1080,26 +1080,28 @@
 
                     <div class="play__area-control">
                         <div class="play__area-control-list">
-                            <button class="play__area-control-list-icon">
+                            <button class="play__area-control-list-icon random-btn">
                                 <i class="ti-control-shuffle"></i>
                             </button>
-                            <button class="play__area-control-list-icon">
+                            <button class="play__area-control-list-icon prev-song-btn">
                                 <i class="fas fa-step-backward"></i>
                             </button>
                             <button class="play__area-control-list-icon play__area-control-list-toggle-play">
                                 <i class="fas fa-play icon-play"></i>
                                 <i class="fas fa-pause icon-pause"></i>
                             </button>
-                            <button class="play__area-control-list-icon">
+                            <button class="play__area-control-list-icon next-song-btn">
                                 <i class="fas fa-step-forward"></i>
                             </button>
-                            <button class="play__area-control-list-icon no-margin">
+                            <button class="play__area-control-list-icon no-margin repeat-btn">
                                 <i class="fas fa-redo-alt"></i>
                             </button>
                         </div>
                         <div class="play__area-control-progress">
                             <input id="progress" class="play__area-control-progress-thumb" type="range" value="0" step="1" min="0" max="100">
                         </div>
+
+                        <audio src="" id="audio"></audio>
                     </div>
                     
                     <div class="play__area-information">
@@ -1116,7 +1118,7 @@
                             <i class="ti-volume"></i>
                         </button>
                         <button class="play__area-information-input">
-                            <input id="volumn" class="play__area-information-volumn" type="range" value="0" step="1" min="0" max="100">
+                            <input id="volumn" class="play__area-information-volumn" type="range" value="100" step="1" min="0" max="100">
                         </button>
                         <button class="play__area-information-list-btn">
                             <i class="ti-list"></i>
@@ -1145,7 +1147,9 @@
 
                 <div class="playlist__wrap">
                     <div class="playlist__content-wrap">
-    
+                        <div class="playlist__song">
+                            
+                        </div>
                         
                     </div>
                     <div class="playlist__nextsong-wrap">

@@ -66,15 +66,32 @@ pageWrapElement.onclick = function () {
         },450)
 }
 
+const KEY_STOREAGE_KEY = 'Spider music'
 
-const playListContentWrapElement = $('.playlist__content-wrap')
+const playListSong = $('.playlist__song')
+const playList = $('.playlist__content')
 const cdThumb = $('.play__area-img');
 const headingPlayArea = $('.play__area-title-heading')
 const descriptionPlayArea = $('.play__area-title-sub')
+const playBtn = $('.icon-play')
+const player = $('.play__area-control-list-toggle-play')
+const audio = $('#audio')
+const progress = $('#progress')
+const nextBtn = $('.next-song-btn')
+const prevBtn = $('.prev-song-btn')
+const randomBtn = $('.random-btn')
+const repeatBtn = $('.repeat-btn')
+const volumeProgress = $('.play__area-information-volumn')
 
 
 const app = {
     currentIndex: 0,
+    currentVolume: 1,
+    isPlaying: false,
+    isRandom: false,
+    isRepeat: false,
+    isOnMouseAndTouchOnProgress: false,
+    config: JSON.parse(localStorage.getItem(KEY_STOREAGE_KEY)) || {},
     songs: [
         {
             name: 'Nevada',
@@ -131,12 +148,16 @@ const app = {
             image: './asset/img/8.jpg'
         }
     ],
+    setConfig: function(key, value) {
+        this.config[key] = value;
+        localStorage.setItem(KEY_STOREAGE_KEY, JSON.stringify(this.config))
+    },
 
     // Rendersong
     render: function() {
         const html = this.songs.map((song,index) => {
             return `
-                <div class="playlist__content">
+                <div class="playlist__content ${index === this.currentIndex ? 'isplay' : ''}" data-index="${index}">
                     <div class="playlist__content-img">
                         <img src="${song.image}" alt="" class="playlist__content-item-img">
                     </div>
@@ -147,7 +168,141 @@ const app = {
                 </div>
             `
         })
-        playListContentWrapElement.innerHTML = html.join('')
+        playListSong.innerHTML = html.join('')
+    },
+
+    handleEvents: function() {
+        const _this = this
+        // CD rotate
+        const cdThumbAnimate = cdThumb.animate([
+            {
+                transform: 'rotate(360deg)'
+            }
+        ], {
+            duration: 10000,
+            iterations: Infinity
+        })
+        cdThumbAnimate.pause()
+
+        // Click playing song
+        player.onclick = function() {
+            if(_this.isPlaying) {
+                audio.pause()
+            } else {
+                audio.play()
+            }
+        }
+
+        // When being playing song
+        audio.onplay = function() {
+            _this.isPlaying = true;
+            player.classList.add('playing')
+            cdThumbAnimate.play()
+        }
+        // When being pausing song
+        audio.onpause = function() {
+            _this.isPlaying = false;
+            player.classList.remove('playing')
+            cdThumbAnimate.pause()
+        }
+
+        // Progress input element run
+        audio.ontimeupdate = function() {
+            if(audio.duration) {
+                const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
+                progress.value = progressPercent
+            }
+        }
+
+         // Chạm chuột
+         progress.onmousedown = function() {
+            _this.isOnMouseAndTouchOnProgress = true
+        }
+
+        // Chạm
+        progress.ontouchstart = function() {
+            _this.isOnMouseAndTouchOnProgress = true
+        }
+
+        // Tua song
+        progress.oninput = function(e) {
+            if(audio.duration) {
+                const seakTime = audio.duration / 100 * e.target.value
+                audio.currentTime = seakTime
+                _this.isOnMouseAndTouchOnProgress = false
+            }
+        }
+
+        // Xử lý khi thay đổi âm lượng
+        volumeProgress.oninput = function(e) {
+            audio.muted = false
+            audio.volume = e.target.value / 100
+            _this.currentVolume = audio.volume
+            
+        }
+
+        // Next song
+        nextBtn.onclick = function() {
+            if(_this.isRandom) {
+                _this.playRandomSong()
+            } else {
+                _this.nextSong()
+            }
+            audio.play()
+            _this.render()
+            _this.scrollToActiveSong()
+        }
+
+        // Prev song
+        prevBtn.onclick = function() {
+            if(_this.isRandom) {
+                _this.playRandomSong()
+            } else {
+                _this.prevSong()
+            }
+            audio.play()
+            _this.render()
+            _this.scrollToActiveSong()
+        }
+
+        // Random song
+        randomBtn.onclick = function() {
+            _this.isRandom = !_this.isRandom
+            _this.setConfig('isRandom', _this.isRandom)
+            randomBtn.classList.toggle('isactive-btn-handle', _this.isRandom)
+        }
+
+        // Repeat song
+        repeatBtn.onclick = function() {
+            _this.isRepeat = !_this.isRepeat
+            _this.setConfig('isRepeat', _this.isRepeat)
+            repeatBtn.classList.toggle('isactive-btn-handle', _this.isRepeat)
+        }
+
+        // Ended next songs
+        audio.onended = function() {
+            if (_this.isRepeat) {
+                audio.play()
+            } else {
+                nextBtn.click()
+            }
+        }
+
+        // Play song when click in playList
+        playListSong.onclick = function(e) {
+            const songNodes = e.target.closest('.playlist__content:not(.isplay)')
+            if(songNodes) {
+                _this.currentIndex = Number(songNodes.dataset.index)
+                _this.loadCurrentSong()
+                _this.render()
+                audio.play()
+            }
+        }
+
+        audio.onvolumn = function(e) {
+            console.log(e.target.value)
+        }
+
     },
 
     defineProperties: function() {
@@ -158,6 +313,16 @@ const app = {
         })
     },
 
+    scrollToActiveSong: function() {
+        setTimeout(() => {
+            $('.playlist__content.isplay').scrollIntoView({
+                behavior: 'auto',
+                block: 'center',
+            })
+        }, 300) 
+            
+    },
+
     loadCurrentSong: function() {
         cdThumb.src = `${this.currentSong.image}`
         headingPlayArea.textContent = this.currentSong.name
@@ -165,13 +330,52 @@ const app = {
         audio.src = this.currentSong.path
     },
 
+    loadConfig: function() {
+        this.isRandom = this.config.isRandom;
+        this.isRepeat = this.config.isRepeat; 
+    },
+
+    nextSong: function() {
+        this.currentIndex++
+        if(this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0
+        }
+        this.loadCurrentSong()
+    },
+
+    prevSong: function() {
+        this.currentIndex--
+        if(this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1
+        }
+        this.loadCurrentSong()
+    },
+
+    playRandomSong: function() {
+        let randomIndexsong
+        do {
+            randomIndexsong = Math.floor(Math.random() * this.songs.length)
+        } while (randomIndexsong === this.currentIndex)
+        this.currentIndex = randomIndexsong
+        this.loadCurrentSong()
+    },
+
+    
+
     start: function() {
+        // Load config
+        this.loadConfig()
         // define
         this.defineProperties()
         // Rendersong
         this.render()
+        // handle 
+        this.handleEvents() 
         // Load
         this.loadCurrentSong()
+        
+        repeatBtn.classList.toggle('isactive-btn-handle', this.isRepeat)
+        randomBtn.classList.toggle('isactive-btn-handle', this.isRandom)
     }
 }
 
