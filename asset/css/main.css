@@ -735,6 +735,16 @@
 
 .play__area-wrap {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.play_area-wrap-left {
+    display: flex;
+}
+
+.play_area-wrap-right {
+    display: flex;
 }
 
 .play__area-title {
