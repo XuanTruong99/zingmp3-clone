@@ -52,6 +52,18 @@
     display: none;
 }
 
+.sidebar__navbar-library {
+    margin-top: 20px;
+}
+
+.sidebar__navbar-library-heading {
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    font-weight: 600; 
+    color: var(--text-color); 
+    padding: 7px 28px;
+}
+
 .sidebar__navbar-playlist {
     border-top: 1px solid rgba(255,255,255, 0.2);
     /* bottom: 0px; */
@@ -98,6 +110,31 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+.sidebar__navbar-item.selection {
+    background-color: rgba(255,255,255, 0.1);
+    position: relative;
+}
+
+.sidebar__navbar-item.selection::before {
+    content: "";
+    width: 2.5px;
+    height: 100%;
+    background-color: var(--playlist-active-color);
+    left: 0;
+    position: absolute;
+
+}
+
+.page__navbar-radio-live {
+    background-color: var(--live-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    margin-left: 10px;
 }
 
 .sidebar__navbar-item:hover {
@@ -327,14 +364,79 @@
 
 .page__slider {
     margin-bottom: 33px;
-
+    height: 28vh;
 }
 
-.page__slider-list {
+.page__slider-list  {
+    transition: transform ease 0.8s;
+}
+
+.page__slider-img {
     height: 169px;
     border-radius: 10px;
 }
 
+.page__slider-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+
+.hide1 {
+    transform: translateX(50%);
+    position: absolute;
+    opacity: 0;
+}
+
+.hide2 {
+    transform: translateX(150%);
+    position: absolute;
+    opacity: 0;
+}
+
+.hide3 {
+    transform: translateX(250%);
+    position: absolute;
+    opacity: 0;
+}
+
+.show1 {
+    transform: translateX(0);
+    position: absolute;
+    opacity: 1;
+}
+
+.show2 {
+    transform: translateX(100%);
+    position: absolute;
+    opacity: 1;
+}
+
+.show3 {
+    transform: translateX(200%);
+    position: absolute;
+    opacity: 1;
+}
+
+
+.page__slider-handle {
+    position: absolute;
+    z-index: 2;
+    top: 70px;
+    padding: 15px;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--black-color);
+    border-radius: 50%;
+    background-color: rgba(255,255,255, 0.6);
+    cursor: pointer;
+}
+
+.page__slider-handle.handle-next {
+    right: 0;
+}
 
 /* recently */
 
@@ -771,7 +873,7 @@
 
 .play__area-control-list {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .play__area-control-list-icon {
@@ -861,12 +963,12 @@
     width: 0px;
 }
 .play__area-control-progress-thumb:hover::-webkit-slider-thumb  {
-    transform: translate(0, -2.5px);
+    transform: translate(0, -2.2px);
     -webkit-appearance: none;
-    background: rgb(204, 204, 204);
+    background: var(--playlist-active-color);
     box-shadow: -400px 0 0 400px var(--white-color);
     cursor: pointer;
-    border-radius: 50px 0 0 50px;
+    /* border-radius: 50px 0 0 50px; */
     height: 8px;
     width: 8px;
 }
@@ -939,6 +1041,22 @@
     cursor: pointer;
 }
 
+.ti-volume {
+    display: block;
+}
+
+.play__area-information-btn-volume .fa-volume-mute {
+    display: none;
+}
+
+.play__area-information-btn-volume.mute .ti-volume {
+    display: none;
+}
+
+.play__area-information-btn-volume.mute .fa-volume-mute {
+    display: block;
+}
+
 .play__area-information-input {
     font-size: 1.6rem;
     background-color: transparent;
@@ -955,7 +1073,7 @@
     border-radius: 50%;
 }
 
-.play__area-information-volumn {
+.play__area-information-volume {
     margin-right: 20px;
     max-width: 70px;
     top: -5px;
@@ -969,12 +1087,12 @@
     cursor: pointer;
 }
 
-.play__area-information-volumn::-webkit-slider-runnable-track {
+.play__area-information-volume::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     height: 6px;
 }
 
-.play__area-information-volumn::-webkit-slider-thumb {
+.play__area-information-volume::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: #fff;
     box-shadow: -400px 0 0 400px var(--white-color);
@@ -983,12 +1101,12 @@
     width: 6px;
 }
 
-.play__area-information-volumn:hover {
+.play__area-information-volume:hover {
     height: 8px;
 }
 
 
-.play__area-information-volumn::after {
+.play__area-information-volume::after {
     top: -14px;
     right: -21px;
     content: "";

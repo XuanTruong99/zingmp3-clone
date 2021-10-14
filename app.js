@@ -38,6 +38,69 @@ pageWrapElement.onscroll = function (e) {
 
 // Page
 
+// Slider
+const sliderBackBtn = $('.handle-back')
+const sliderNextBtn = $('.handle-next')
+const sliderLists = $$('.page__slider-list')
+const sliderList = $('.page__slider-list')
+
+sliderNextBtn.onclick = function() {
+    for(var i = 0; i < sliderLists.length; i++) {
+        if(sliderLists[i].classList.value.includes('show1')) {
+            sliderLists[i].classList.remove('show1')
+            sliderLists[i].classList.add('hide3')
+        } else if(sliderLists[i].classList.value.includes('show2')) {
+            sliderLists[i].classList.remove('show2')
+            sliderLists[i].classList.add('show1')
+        } else if(sliderLists[i].classList.value.includes('show3')) {
+            sliderLists[i].classList.remove('show3')
+            sliderLists[i].classList.add('show2')
+        } else if(sliderLists[i].classList.value.includes('hide1')) {
+            sliderLists[i].classList.remove('hide1')
+            sliderLists[i].classList.add('show3')
+        } else if(sliderLists[i].classList.value.includes('hide2')) {
+            sliderLists[i].classList.remove('hide2')
+            sliderLists[i].classList.add('hide1')
+        } else if(sliderLists[i].classList.value.includes('hide3')) {
+            sliderLists[i].classList.remove('hide3')
+            sliderLists[i].classList.add('hide2')
+        }
+    }
+}
+
+sliderBackBtn.onclick = function() {
+    for(var i = 0; i < sliderLists.length; i++) {
+        if(sliderLists[i].classList.value.includes('show1')) {
+            sliderLists[i].classList.remove('show1')
+            sliderLists[i].classList.add('show2')
+        } else if(sliderLists[i].classList.value.includes('show2')) {
+            sliderLists[i].classList.remove('show2')
+            sliderLists[i].classList.add('show3')
+        } else if(sliderLists[i].classList.value.includes('show3')) {
+            sliderLists[i].classList.remove('show3')
+            sliderLists[i].classList.add('hide1')
+        } else if(sliderLists[i].classList.value.includes('hide1')) {
+            sliderLists[i].classList.remove('hide1')
+            sliderLists[i].classList.add('hide2')
+        } else if(sliderLists[i].classList.value.includes('hide2')) {
+            sliderLists[i].classList.remove('hide2')
+            sliderLists[i].classList.add('hide3')
+        } else if(sliderLists[i].classList.value.includes('hide3')) {
+            sliderLists[i].classList.remove('hide3')
+            sliderLists[i].classList.add('show1')
+        }
+    }
+}
+
+// Auto slider
+
+setInterval(function() {
+    sliderNextBtn.click()
+},5000)
+
+sliderNextBtn.addEventListener('click', function(e) {
+    e.stopPropagation()
+})
 
 
 // Playlist
@@ -59,13 +122,16 @@ playListBtnElement.onclick = function() {
 }
 
 pageWrapElement.onclick = function () {
-    playListBtnElement.style.backgroundColor = 'rgba(255,255,255, 0.1)'
+        playListBtnElement.style.backgroundColor = 'rgba(255,255,255, 0.1)'
         playListElement.classList.add('exit')
         setTimeout(function () {
             playListElement.style.display = 'none'
         },450)
 }
 
+
+
+// Play music
 const KEY_STOREAGE_KEY = 'Spider music'
 
 const playListSong = $('.playlist__song')
@@ -81,7 +147,8 @@ const nextBtn = $('.next-song-btn')
 const prevBtn = $('.prev-song-btn')
 const randomBtn = $('.random-btn')
 const repeatBtn = $('.repeat-btn')
-const volumeProgress = $('.play__area-information-volumn')
+const volumeProgress = $('.play__area-information-volume')
+const volumeOffOnElement = $('.play__area-information-btn-volume')
 
 
 const app = {
@@ -233,14 +300,7 @@ const app = {
             }
         }
 
-        // Xử lý khi thay đổi âm lượng
-        volumeProgress.oninput = function(e) {
-            audio.muted = false
-            audio.volume = e.target.value / 100
-            _this.currentVolume = audio.volume
-            
-        }
-
+        
         // Next song
         nextBtn.onclick = function() {
             if(_this.isRandom) {
@@ -252,7 +312,7 @@ const app = {
             _this.render()
             _this.scrollToActiveSong()
         }
-
+        
         // Prev song
         prevBtn.onclick = function() {
             if(_this.isRandom) {
@@ -264,7 +324,7 @@ const app = {
             _this.render()
             _this.scrollToActiveSong()
         }
-
+        
         // Random song
         randomBtn.onclick = function() {
             _this.isRandom = !_this.isRandom
@@ -278,7 +338,7 @@ const app = {
             _this.setConfig('isRepeat', _this.isRepeat)
             repeatBtn.classList.toggle('isactive-btn-handle', _this.isRepeat)
         }
-
+        
         // Ended next songs
         audio.onended = function() {
             if (_this.isRepeat) {
@@ -287,7 +347,7 @@ const app = {
                 nextBtn.click()
             }
         }
-
+        
         // Play song when click in playList
         playListSong.onclick = function(e) {
             const songNodes = e.target.closest('.playlist__content:not(.isplay)')
@@ -298,9 +358,26 @@ const app = {
                 audio.play()
             }
         }
+        
+        // Xử lý khi thay đổi âm lượng
+        volumeProgress.oninput = function(e) {
+            audio.muted = false
+            audio.volume = e.target.value / 100
+            _this.currentVolume = audio.volume
+            return _this.currentVolume === 0 ? volumeOffOnElement.classList.add('mute') : volumeOffOnElement.classList.remove('mute')
+        }
 
-        audio.onvolumn = function(e) {
-            console.log(e.target.value)
+        // Mute and unmute
+        volumeOffOnElement.onclick = function() {
+            if(audio.muted) {
+                audio.muted = false;
+                volumeOffOnElement.classList.remove('mute')
+                volumeProgress.value = 100
+            } else {
+                audio.muted = true
+                volumeOffOnElement.classList.add('mute')
+                volumeProgress.value = 0
+            }
         }
 
     },

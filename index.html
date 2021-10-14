@@ -31,7 +31,7 @@
                                     <span class="sidebar__navbar-text">Cá Nhân</span>
                                 </div>
                             </li>
-                            <li class="sidebar__navbar-item">
+                            <li class="sidebar__navbar-item selection">
                                 <div class="sidebar__navbar-icon-wrap">
                                     <i class="fas fa-record-vinyl"></i>
                                 </div>
@@ -61,6 +61,7 @@
                                 </div>
                                 <div class="sidebar__navbar-text-wrap">
                                     <span class="sidebar__navbar-text">Radio</span>
+                                    <span class="page__navbar-radio-live">LIVE</span>
                                 </div>
                             </li>
                         </ul>
@@ -98,31 +99,36 @@
                                         <span class="sidebar__navbar-text">MV</span>
                                     </div>
                                 </li>
-                                <li class="sidebar__navbar-item">
-                                    <div class="sidebar__navbar-icon-wrap">
-                                        <i class="fas fa-film"></i>
-                                    </div>
-                                    <div class="sidebar__navbar-text-wrap">
-                                        <span class="sidebar__navbar-text">MV</span>
-                                    </div>
-                                </li>
-                                <li class="sidebar__navbar-item">
-                                    <div class="sidebar__navbar-icon-wrap">
-                                        <i class="fas fa-film"></i>
-                                    </div>
-                                    <div class="sidebar__navbar-text-wrap">
-                                        <span class="sidebar__navbar-text">MV</span>
-                                    </div>
-                                </li>
-                                <li class="sidebar__navbar-item">
-                                    <div class="sidebar__navbar-icon-wrap">
-                                        <i class="fas fa-film"></i>
-                                    </div>
-                                    <div class="sidebar__navbar-text-wrap">
-                                        <span class="sidebar__navbar-text">MV</span>
-                                    </div>
-                                </li>
                             </ul>
+                            <div class="sidebar__navbar-library">
+                                <div class="sidebar__navbar-library-heading">Thư viện</div>
+                                <ul class="sidebar__navbar-list-bottom">
+                                    <li class="sidebar__navbar-item">
+                                        <div class="sidebar__navbar-icon-wrap" style="font-size: 1.6rem; width: 15%; margin: 0 5px; padding: 4px; background-color: #2e9eff; color: var(--white-color); border-radius: 50px;">
+                                            <div class="ti-music"></div>
+                                        </div>
+                                        <div class="sidebar__navbar-text-wrap">
+                                            <span class="sidebar__navbar-text">Bài hát</span>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar__navbar-item">
+                                        <div class="sidebar__navbar-icon-wrap" style="font-size: 1.6rem; width: 15%; margin: 0 5px; padding: 4px; background-color: #92ca54; color: var(--white-color); border-radius: 50px;">
+                                            <i class="fab fa-playstation"></i>
+                                        </div>
+                                        <div class="sidebar__navbar-text-wrap">
+                                            <span class="sidebar__navbar-text">Playlist</span>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar__navbar-item">
+                                        <div class="sidebar__navbar-icon-wrap" style="font-size: 1.6rem; width: 15%; margin: 0 5px; padding: 4px; background-color: #f9b652; color: var(--white-color); border-radius: 50px;">
+                                            <i class="far fa-clock"></i>
+                                        </div>
+                                        <div class="sidebar__navbar-text-wrap">
+                                            <span class="sidebar__navbar-text">Gần đây</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="sidebar__navbar-playlist">
                             <button class="sidebar__navbar-playlist-btn">
@@ -208,27 +214,56 @@
                     <div class="grid">
                         <div class="page__slider">
                             <div class="grid__row">
-                                <div class="grid__column-4">
-                                    <a href="" class="page__slider-link">
-                                        <div class="page__slider-list" style="background-image: url(https://photo-zmp3.zadn.vn/banner/7/d/f/8/7df8a3bf8bcc527f392ed5414132497e.jpg); background-size: cover;
-                                        background-repeat: no-repeat;">
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="grid__column-4">
-                                    <a href="" class="page__slider-link">
-                                        <div class="page__slider-list" style="background-image: url(https://photo-zmp3.zadn.vn/banner/4/0/e/6/40e6fee9a5c230f223034cd00b16be10.jpg); background-size: cover;
-                                        background-repeat: no-repeat;">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="grid__column-4">
-                                    <a href="" class="page__slider-link">
-                                        <div class="page__slider-list" style="background-image: url(https://photo-zmp3.zadn.vn/banner/0/1/6/3/0163ff6f8df067705459d6a6463e8903.jpg); background-size: cover;
-                                        background-repeat: no-repeat;">
-                                        </div>
-                                    </a>
+                                <div class="page__slider-wrap">
+                                    <button class="page__slider-handle handle-back">
+                                        <i class="ti-angle-left"></i>
+                                    </button>
+                                    <div class="grid__column-4 page__slider-list show1">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/7/d/f/8/7df8a3bf8bcc527f392ed5414132497e.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+    
+                                    <div class="grid__column-4 page__slider-list show2">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/4/0/e/6/40e6fee9a5c230f223034cd00b16be10.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="grid__column-4 page__slider-list show3">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/0/1/6/3/0163ff6f8df067705459d6a6463e8903.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="grid__column-4 page__slider-list hide1">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/7/f/1/e/7f1e617f54182eb619266b818956db84.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="grid__column-4 page__slider-list hide2">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/e/d/4/9/ed49e4ec5eef6a5817e774cf5ac9ae79.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="grid__column-4 page__slider-list hide3">
+                                        <a href="" class="page__slider-link">
+                                            <div class="page__slider-img" style="background-image: url(https://photo-zmp3.zadn.vn/banner/3/2/d/2/32d2b1792b994ba4d21689760fe7c48e.jpg); background-size: cover;
+                                            background-repeat: no-repeat;">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <button class="page__slider-handle handle-next">
+                                        <div class="ti-angle-right"></div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1114,11 +1149,12 @@
                         <button class="play__area-information-btn">
                             <i class="far fa-window-restore"></i>
                         </button>
-                        <button class="play__area-information-btn">
+                        <button class="play__area-information-btn play__area-information-btn-volume">
                             <i class="ti-volume"></i>
+                            <i class="fas fa-volume-mute"></i>
                         </button>
                         <button class="play__area-information-input">
-                            <input id="volumn" class="play__area-information-volumn" type="range" value="100" step="1" min="0" max="100">
+                            <input id="volume" class="play__area-information-volume" type="range" value="100" step="1" min="0" max="100">
                         </button>
                         <button class="play__area-information-list-btn">
                             <i class="ti-list"></i>
