@@ -731,6 +731,7 @@
     bottom: 0;
     padding: 0 20px;
     z-index: 200;
+    min-width: 768px;
 }
 
 .play__area-wrap {
