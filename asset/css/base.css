@@ -69,6 +69,7 @@ html {
 }
 
 .grid__column-3 {
+    position: relative;
     padding-left: 15px;
     padding-right: 15px;
     width: 25%;
