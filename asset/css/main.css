@@ -17,8 +17,16 @@
 }
 
 .sidebar__wrap {
+    display: flex;
+    flex-direction: column;
     background-color: var(--primarysb-color);
     height: calc(100% - 90px);
+}
+
+.sidebar__wrap-top {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 45px);
 }
 
 .sidebar__brand {
@@ -35,7 +43,9 @@
 }
 
 .sidebar__navbar {
-    height: calc(100% - 90px);
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar__navbar-list-top,
@@ -47,11 +57,6 @@
 .sidebar__navbar-list-bottom-wrap {
     height: 40%;
     overflow: hidden scroll;
-}
-
-.playactive {
-    /* height: 160px; */
-    /* height: 100%; */
 }
 
 .sidebar__navbar-list-bottom-wrap::-webkit-scrollbar {
@@ -72,7 +77,6 @@
 
 .sidebar__navbar-playlist {
     border-top: 1px solid rgba(255,255,255, 0.2);
-    position: relative;
 }
 
 .sidebar__navbar-playlist-btn {
