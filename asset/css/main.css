@@ -748,12 +748,16 @@
 
 .play_area-wrap-left {
     display: flex;
-    width: 75%;
+    /* width: 75%; */
+}
+
+.play_area-wrap-mid {
+    display: flex;
 }
 
 .play_area-wrap-right {
     display: flex;
-    width: 25%;
+    /* width: 25%; */
 }
 
 .play__area-title {
