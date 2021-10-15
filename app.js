@@ -1,10 +1,7 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-var test = 5
-for(var i = 0; i < test; i++) {
-    console.log(i)
-}
+console.log('Hi, chào cậu')
 
 // Header
 const mainElement = $('.main')
