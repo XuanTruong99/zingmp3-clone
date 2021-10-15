@@ -606,11 +606,6 @@
     cursor: default;
 }
 
-.page__radio-link {
-    position: relative;
-}
-
-
 .page__radio-list {
     position: relative;
     height: 100%;
@@ -621,8 +616,8 @@
 
 .page__radio-live {
     position: absolute;
-    top: 125px;
-    left: 48px;
+    top: 65%;
+    left: 40%;
     background-color: var(--live-color);
     padding: 1px 2px 1px 4px;
     line-height: 100%;
@@ -664,12 +659,10 @@
 }
 
 .page__radio-cover-icon-play {
-    position: relative;
-    left: 32px;
-    top: -50px;
     padding: 8px 10px;
     border-radius: 50%;
     border: 1px solid #fff;
+    margin: auto;
 }
 
 .page__radio-item-cover-play {
@@ -677,17 +670,15 @@
     position: absolute;
     font-size: 2.4rem;
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    top: 100px;
-    margin-left: 10px;
+    width: 80%;
+    top: 25%;
     transition: ease 0.5s;
     opacity: 0;
     cursor: pointer;
 }
 
 .page__radio-link:hover .page__item-cover, 
-.page__radio-link:hover .page__item-cover-play {
+.page__radio-link:hover .page__radio-item-cover-play {
     opacity: 1;
 }
 
@@ -697,8 +688,8 @@
 
 .page__radio-item-img {
     position: absolute;
-    left: 87px;
-    top: 85px;
+    left: 60%;
+    top: 45%;
 }
 
 .page__radio-sub-img {
