@@ -728,6 +728,9 @@
 
 .play__area {
     display: flex;
+}
+
+.play__area-wrap {
     width: 100%;
     height: 90px;
     background-image: url(https://zmp3-static.zadn.vn/skins/zmp3-v6.1/images/theme-player/zma.png);
@@ -738,9 +741,6 @@
     padding: 0 20px;
     z-index: 200;
     min-width: 768px;
-}
-
-.play__area-wrap {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -748,10 +748,12 @@
 
 .play_area-wrap-left {
     display: flex;
+    width: 75%;
 }
 
 .play_area-wrap-right {
     display: flex;
+    width: 25%;
 }
 
 .play__area-title {
@@ -1046,7 +1048,6 @@
 .play__area-information {
     display: flex;
     align-items: center;
-    margin-left: 36%;
 }
 
 .play__area-information-btn {

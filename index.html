@@ -1087,85 +1087,83 @@
                 </div>
             </div>
 
-            <div class="play__area">
-                <div class="play__area-wrap">
-                    <div class="play_area-wrap-left">
-                        <div class="play__area-title">
-                            <img src="./asset/img/logo-zingmp3.svg" alt="" class="play__area-img">
-                            <div class="play__area-title-wrap">
-                                <div class="play__area-heading-wrap">
-                                    <p class="play__area-title-heading">Bước qua mùa cô đơn</p>
-                                </div>
-                                <span class="play__area-title-sub">Vũ</span>
+            <div class="play__area-wrap">
+                <div class="play_area-wrap-left">
+                    <div class="play__area-title">
+                        <img src="./asset/img/logo-zingmp3.svg" alt="" class="play__area-img">
+                        <div class="play__area-title-wrap">
+                            <div class="play__area-heading-wrap">
+                                <p class="play__area-title-heading"></p>
+                            </div>
+                            <span class="play__area-title-sub"></span>
+                        </div>
+                    </div>
+                    <div class="play__area-libary">
+                        <div class="play__area-libary-wrap play__area-libary-link">
+                            <button class="ti-heart play__area-libary-btn"></button>
+                            <div class="play__area-libary-sub">
+                                <span class="play__area-libary-sub-text">Thêm vào thư viện</span>
                             </div>
                         </div>
-                        <div class="play__area-libary">
-                            <div class="play__area-libary-wrap play__area-libary-link">
-                                <button class="ti-heart play__area-libary-btn"></button>
-                                <div class="play__area-libary-sub">
-                                    <span class="play__area-libary-sub-text">Thêm vào thư viện</span>
-                                </div>
+                        <div class="play__area-libary-wrap play__area-more-link">
+                            <button class="ti-more-alt play__area-more-btn"></button>
+                            <div class="play__area-more-sub">
+                                <span class="play__area-libary-sub-text">Xem thêm</span>
                             </div>
-                            <div class="play__area-libary-wrap play__area-more-link">
-                                <button class="ti-more-alt play__area-more-btn"></button>
-                                <div class="play__area-more-sub">
-                                    <span class="play__area-libary-sub-text">Xem thêm</span>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="play__area-control">
-                            <div class="play__area-control-list">
-                                <button class="play__area-control-list-icon random-btn">
-                                    <i class="ti-control-shuffle"></i>
-                                </button>
-                                <button class="play__area-control-list-icon prev-song-btn">
-                                    <i class="fas fa-step-backward"></i>
-                                </button>
-                                <button class="play__area-control-list-icon play__area-control-list-toggle-play">
-                                    <i class="fas fa-play icon-play"></i>
-                                    <i class="fas fa-pause icon-pause"></i>
-                                </button>
-                                <button class="play__area-control-list-icon next-song-btn">
-                                    <i class="fas fa-step-forward"></i>
-                                </button>
-                                <button class="play__area-control-list-icon no-margin repeat-btn">
-                                    <i class="fas fa-redo-alt"></i>
-                                </button>
-                            </div>
-                            <div class="play__area-control-progress">
-                                <input id="progress" class="play__area-control-progress-thumb" type="range" value="0" step="1" min="0" max="100">
-                            </div>
-    
-                            <audio src="" id="audio"></audio>
                         </div>
                     </div>
 
-                    <div class="play_area-wrap-right">
-                        <div class="play__area-information">
-                            <button class="play__area-information-btn">
-                                <i class="fas fa-film"></i>
+                    <div class="play__area-control">
+                        <div class="play__area-control-list">
+                            <button class="play__area-control-list-icon random-btn">
+                                <i class="ti-control-shuffle"></i>
                             </button>
-                            <button class="play__area-information-btn">
-                                <i class="ti-microphone-alt"></i>
+                            <button class="play__area-control-list-icon prev-song-btn">
+                                <i class="fas fa-step-backward"></i>
                             </button>
-                            <button class="play__area-information-btn">
-                                <i class="far fa-window-restore"></i>
+                            <button class="play__area-control-list-icon play__area-control-list-toggle-play">
+                                <i class="fas fa-play icon-play"></i>
+                                <i class="fas fa-pause icon-pause"></i>
                             </button>
-                            <button class="play__area-information-btn play__area-information-btn-volume">
-                                <i class="ti-volume"></i>
-                                <i class="fas fa-volume-mute"></i>
+                            <button class="play__area-control-list-icon next-song-btn">
+                                <i class="fas fa-step-forward"></i>
                             </button>
-                            <button class="play__area-information-input">
-                                <input id="volume" class="play__area-information-volume" type="range" value="100" step="1" min="0" max="100">
-                            </button>
-                            <button class="play__area-information-list-btn">
-                                <i class="ti-list"></i>
+                            <button class="play__area-control-list-icon no-margin repeat-btn">
+                                <i class="fas fa-redo-alt"></i>
                             </button>
                         </div>
+                        <div class="play__area-control-progress">
+                            <input id="progress" class="play__area-control-progress-thumb" type="range" value="0" step="1" min="0" max="100">
+                        </div>
+
+                        <audio src="" id="audio"></audio>
                     </div>
-                    
                 </div>
+
+                <div class="play_area-wrap-right">
+                    <div class="play__area-information">
+                        <button class="play__area-information-btn">
+                            <i class="fas fa-film"></i>
+                        </button>
+                        <button class="play__area-information-btn">
+                            <i class="ti-microphone-alt"></i>
+                        </button>
+                        <button class="play__area-information-btn">
+                            <i class="far fa-window-restore"></i>
+                        </button>
+                        <button class="play__area-information-btn play__area-information-btn-volume">
+                            <i class="ti-volume"></i>
+                            <i class="fas fa-volume-mute"></i>
+                        </button>
+                        <button class="play__area-information-input">
+                            <input id="volume" class="play__area-information-volume" type="range" value="100" step="1" min="0" max="100">
+                        </button>
+                        <button class="play__area-information-list-btn">
+                            <i class="ti-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
             </div>
 
             <div class="playlist">
