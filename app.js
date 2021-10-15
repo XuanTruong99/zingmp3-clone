@@ -1,6 +1,11 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
+var test = 5
+for(var i = 0; i < test; i++) {
+    console.log(i)
+}
+
 // Header
 const mainElement = $('.main')
 const headerInputElement = $('.header__input')
@@ -149,6 +154,8 @@ const randomBtn = $('.random-btn')
 const repeatBtn = $('.repeat-btn')
 const volumeProgress = $('.play__area-information-volume')
 const volumeOffOnElement = $('.play__area-information-btn-volume')
+const musicCurrentTime = $(".current")
+const musicDuartion = $(".duration");
 
 
 const app = {
@@ -160,6 +167,18 @@ const app = {
     isOnMouseAndTouchOnProgress: false,
     config: JSON.parse(localStorage.getItem(KEY_STOREAGE_KEY)) || {},
     songs: [
+        {
+            name: 'What Are Words',
+            singer: 'Chris Medina',
+            path: './asset/music/What Are Words - Chris Medina (Lyrics).mp3',
+            image: 'https://avatar-ex-swe.nixcdn.com/playlist/2013/11/06/c/c/a/8/1383717171089_500.jpg'
+        },
+        {
+            name: 'Love The Way You Lie',
+            singer: 'Skylar Grey',
+            path: './asset/music/Skylar Grey - Love The Way You Lie (Live on the Honda Stage at The Peppermint Club).mp3',
+            image: 'https://s.mxmcdn.net/images-storage/albums/5/8/9/1/4/7/26741985_800_800.jpg'
+        },
         {
             name: 'Nevada',
             singer: 'Vicetone',
@@ -236,8 +255,9 @@ const app = {
             `
         })
         playListSong.innerHTML = html.join('')
+        
     },
-
+    
     handleEvents: function() {
         const _this = this
         // CD rotate
@@ -279,6 +299,15 @@ const app = {
                 const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
                 progress.value = progressPercent
             }
+            // 
+            let currentMin = Math.floor(audio.currentTime / 60);
+            let currentSec = Math.floor(audio.currentTime % 60);
+            if(currentSec < 10){ //if sec is less than 10 then add 0 before it
+            currentSec = `0${currentSec}`;
+            }
+            musicCurrentTime.innerText = `${currentMin}:${currentSec}`;
+        
+            
         }
 
          // Chạm chuột
@@ -299,7 +328,6 @@ const app = {
                 _this.isOnMouseAndTouchOnProgress = false
             }
         }
-
         
         // Next song
         nextBtn.onclick = function() {
@@ -405,6 +433,18 @@ const app = {
         headingPlayArea.textContent = this.currentSong.name
         descriptionPlayArea.textContent = this.currentSong.singer
         audio.src = this.currentSong.path
+        // Render duration time audio
+        audio.addEventListener('loadedmetadata', function () {
+            const mainDuration = audio.duration 
+            const minDuration = Math.floor(audio.duration / 60)
+            const secDuration = Math.floor(mainDuration - minDuration * 60)
+            if(secDuration != 0) {
+                musicDuartion.innerText = `${minDuration}:${secDuration}`
+            } else {
+                musicDuartion.innerText = `${minDuration}:00`
+            }
+        })
+
     },
 
     loadConfig: function() {
