@@ -816,7 +816,11 @@
     cursor: pointer;
 }
 
-.play__area-libary-wrap button:hover {
+.play__area-libary-wrap button:hover,
+.play__area-control-list-icon.random-btn:hover,
+.play__area-control-list-icon.prev-song-btn:hover,
+.play__area-control-list-icon.next-song-btn:hover,
+.play__area-control-list-icon.repeat-btn:hover {
     background-color: rgba(255,255,255, 0.1);
 }
 
@@ -879,6 +883,51 @@
     border-color: rgb(39, 38, 38) transparent transparent transparent;
 }
 
+.play__area-MV-sub, 
+.play__area-lyrics-sub, 
+.play__area-screenshort-sub,
+.play__area-mute-sub {
+    color: var(--textbar-color);
+    padding: 6px 0;
+    border-radius: 5px;
+    position: absolute;
+    top: -40px;
+    font-size: 1.2rem;
+    background-color: rgb(39, 38, 38);
+    display: none;
+    animation: opacityAnimation ease 0.4s;
+    text-align: center;
+}
+
+.play__area-MV-sub::after, 
+.play__area-lyrics-sub::after, 
+.play__area-screenshort-sub::after,
+.play__area-mute-sub::after {
+    content: "";
+    border-style: solid;
+    border-width: 8px;
+    bottom: -15px;
+    left: 40%;
+    position: absolute;
+    border-color: rgb(39, 38, 38) transparent transparent transparent;
+}
+
+.play__area-information-MV-btn:hover .play__area-MV-sub {
+    display: block;
+}
+
+.play__area-information-lyrics-btn:hover .play__area-lyrics-sub {
+    display: block;
+}
+
+.play__area-information-screenshort-btn:hover .play__area-screenshort-sub {
+    display: block;
+}
+
+.play__area-information-btn-volume:hover .play__area-mute-sub {
+    display: block;
+}
+
 .play__area-control {
     display: flex;
     flex-direction: column;
@@ -937,9 +986,6 @@
     display: none;
 }
 
-/* .play__area-control-progress {
-    margin: auto;
-} */
 
 .play__area-control-progress-thumb {
     width: 389px;
@@ -978,7 +1024,7 @@
     width: 0px;
 }
 .play__area-control-progress-thumb:hover::-webkit-slider-thumb  {
-    transform: translate(0, -2.2px);
+    transform: translate(0, -25%);
     -webkit-appearance: none;
     background: var(--playlist-active-color);
     box-shadow: -400px 0 0 400px var(--white-color);
