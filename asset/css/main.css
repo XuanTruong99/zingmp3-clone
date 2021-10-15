@@ -1026,7 +1026,7 @@
 .play__area-control-progress-thumb:hover::-webkit-slider-thumb  {
     transform: translate(0, -30%);
     -webkit-appearance: none;
-    background: var(--playlist-active-color);
+    background: var(--white-color);
     box-shadow: -400px 0 0 400px var(--white-color);
     cursor: pointer;
     /* border-radius: 50px 0 0 50px; */
